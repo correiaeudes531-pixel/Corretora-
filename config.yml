@@ -1,0 +1,74 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Deixa o painel inteiro em portugues
+locale: "pt"
+
+media_folder: "images/imoveis"
+public_folder: "/images/imoveis"
+
+collections:
+  - name: "imoveis"
+    label: "Im\u00f3veis"
+    description: "Adicione, edite ou desative os im\u00f3veis que aparecem no site. As mudan\u00e7as ficam publicadas no site em menos de um minuto depois de clicar em Publicar."
+    files:
+      - name: "lista"
+        label: "Lista de Im\u00f3veis"
+        file: "content/imoveis.json"
+        fields:
+          - label: "Im\u00f3veis"
+            name: "imoveis"
+            widget: "list"
+            summary: "{{titulo}} \u2014 {{bairro}}"
+            fields:
+              - label: "T\u00edtulo do im\u00f3vel"
+                name: "titulo"
+                widget: "string"
+                hint: "Exemplo: Casa em Condom\u00ednio Fechado"
+
+              - label: "Tipo"
+                name: "tipo"
+                widget: "select"
+                options: ["Casa", "Apartamento", "Terreno"]
+
+              - label: "Situa\u00e7\u00e3o"
+                name: "status"
+                widget: "select"
+                options: ["Venda", "Aluguel"]
+
+              - label: "Foto principal"
+                name: "imagem"
+                widget: "image"
+                hint: "Escolha uma foto do im\u00f3vel. Formato PNG."
+
+              - label: "Pre\u00e7o"
+                name: "preco"
+                widget: "number"
+                value_type: "float"
+                hint: "Digite somente n\u00fameros, sem ponto e sem v\u00edrgula. Exemplo: 650000"
+
+              - { label: "Quartos", name: "quartos", widget: "number", required: false }
+              - { label: "Banheiros", name: "banheiros", widget: "number", required: false }
+              - { label: "Vagas de garagem", name: "vagas", widget: "number", required: false }
+              - { label: "\u00c1rea em m2", name: "area", widget: "number", required: false }
+
+              - label: "Bairro"
+                name: "bairro"
+                widget: "string"
+
+              - label: "Cidade"
+                name: "cidade"
+                widget: "string"
+
+              - label: "Descri\u00e7\u00e3o"
+                name: "descricao"
+                widget: "text"
+                required: false
+                hint: "Um texto curto contando os pontos fortes do im\u00f3vel."
+
+              - label: "Im\u00f3vel ativo no site"
+                name: "ativo"
+                widget: "boolean"
+                default: true
+                hint: "Desative para esconder o im\u00f3vel do site sem precisar apagar."
